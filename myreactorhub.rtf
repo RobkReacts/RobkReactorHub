@@ -1,0 +1,404 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9\par
+<!DOCTYPE html>\par
+<html>\par
+\tab <head>\par
+\tab <meta charset="utf-8">\par
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">\par
+\tab <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\par
+\tab <link rel="stylesheet" href="generator.css">\par
+\tab\par
+\tab <link href="https://fonts.googleapis.com/icon?family=Material+Icons"\par
+      rel="stylesheet">\par
+\tab <title>Reactorhub link generator</title>\par
+\tab </head>\par
+\tab <body>\par
+\tab\tab <div class="container-fluid w-75 mt-lg-5">\par
+\tab\tab\tab <span class="pageTitle">Reactorhub link generator</span>\par
+\tab\tab\tab <div id="DiscordMessage" class="ml-lg-4">For help or feedback, join us on <a href="https://discord.gg/xrenPjZbBm" target="_blank"><img id="DiscordLogo" src="Discord-Logo-Color.png"/>Discord!<a/></div>\par
+\tab\tab\tab <form id="form" onsubmit="event.preventDefault();  generateLink(this);" >\par
+\tab\tab\tab\tab <span class="formGroupTitle">Reaction video</span>\par
+\tab\tab\tab\tab <div class="form-row">\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-4">\par
+\tab\tab\tab\tab\tab\tab <label for="reactorURL" >URL : </label>\par
+\tab\tab\tab\tab\tab\tab <input id="reactorURL" name="reactorURL" type="text" required class="form-control mh-sm-3" aria-describedby="reactorURLHelp" >\par
+\tab\tab\tab\tab\tab\tab <div id="reactorURLHelp" class="form-text text-muted small" >\par
+\tab\tab\tab\tab\tab\tab\tab <span>Plateforms supported:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <ul class=" ">\par
+\tab\tab\tab\tab\tab\tab\tab   <li>Youtube - example : {{\field{\*\fldinst{HYPERLINK https://www.youtube.com/watch?v=xxxxxxxx</li> }}{\fldrslt{https://www.youtube.com/watch?v=xxxxxxxx</li>\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab\tab\tab\tab\tab </ul>\par
+\tab\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-1">\par
+\tab\tab\tab\tab\tab\tab <label for="reactorVOL" >Volume (%): </label>\par
+\tab\tab\tab\tab\tab\tab <input id="reactorVOL" name="reactorVOL" type="number" min="0" max="100" value="50" required class="form-control col-lg-10">\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-3">\par
+\tab\tab\tab\tab\tab\tab <label>Start reactor video at:</label>\par
+\tab\tab\tab\tab\tab\tab <div class="input-group ">\par
+\tab\tab\tab\tab\tab\tab\tab <input id="startTimeHH" name="startTimeHH" type="number" value="00" min="0" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="startTimeMM" name="startTimeMM" type="number" value="00" min="0" max="59" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="startTimeSS" name="startTimeSS" type="number" value="00" min="0" max="59" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\tab <p class="form-text text-muted small">Format: hh:mm:ss</p>\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab <span class="formGroupTitle">Talent video</span>\par
+\tab\tab\tab\tab <div class="form-row">\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-4">\par
+\tab\tab\tab\tab\tab\tab <label for="reactorURL" >URL : </label>\par
+\tab\tab\tab\tab\tab\tab <input id="talentURL" name="talentURL" type="text" required class="form-control" aria-describedby="talentURLHelp" oninput="validateTalentUrl(this)">\par
+\tab\tab\tab\tab\tab\tab <div id="talentURLHelp" class="form-text text-muted small" >\par
+\tab\tab\tab\tab\tab\tab\tab <span>Plateforms supported:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <ul class=" ">\par
+\tab\tab\tab\tab\tab\tab\tab   <li>Youtube - <i>example : {{\field{\*\fldinst{HYPERLINK https://www.youtube.com/watch?v=xxxxxxxx</i></li> }}{\fldrslt{https://www.youtube.com/watch?v=xxxxxxxx</i></li>\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab\tab\tab\tab\tab   <li>Dailymotion - <i>example : {{\field{\*\fldinst{HYPERLINK https://www.dailymotion.com/video/xxxxxxxxxxxxxxxxxxx</i></li> }}{\fldrslt{https://www.dailymotion.com/video/xxxxxxxxxxxxxxxxxxx</i></li>\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab\tab\tab\tab\tab   <li>Vimeo - <i>example : {{\field{\*\fldinst{HYPERLINK https://vimeo.com/xxxxxxxxx</i></li> }}{\fldrslt{https://vimeo.com/xxxxxxxxx</i></li>\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab\tab\tab\tab\tab   <li>Streamable - <i>example : {{\field{\*\fldinst{HYPERLINK https://streamable.com/xxxxx</i></li> }}{\fldrslt{https://streamable.com/xxxxx</i></li>\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab\tab\tab\tab\tab </ul>\par
+\tab\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-1">\par
+\tab\tab\tab\tab\tab\tab <label for="talentVOL" >Volume (%): </label>\par
+\tab\tab\tab\tab\tab\tab <input id="talentVOL" name="talentVOL" type="number" min="0" max="100" value="50" required class="form-control col-lg-10">\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-3">\par
+\tab\tab\tab\tab\tab\tab <label>Start talent video at:</label>\par
+\tab\tab\tab\tab\tab\tab <div class="input-group">\par
+\tab\tab\tab\tab\tab\tab\tab <input id="talentStartTimeHH" name="talentStartTimeHH" type="number" value="00" min="0" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="talentStartTimeMM" name="talentStartTimeMM" type="number" value="00" min="0" max="59" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="talentStartTimeSS" name="talentStartTimeSS" type="number" value="00" min="0" max="59" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\tab <p class="form-text text-muted small">Format: hh:mm:ss</p>\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab <span class="formGroupTitle">Timing</span>\par
+\tab\tab\tab\tab <div class="form-row">\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-3">\par
+\tab\tab\tab\tab\tab\tab <label>Sync start at: </label>\par
+\tab\tab\tab\tab\tab\tab <div class="input-group ">\par
+\tab\tab\tab\tab\tab\tab\tab <input id="syncStartTimeHH" name="syncStartTimeHH" type="number" value="00" min="0" onchange="validateSyncTimings(this);" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="syncStartTimeMM" name="syncStartTimeMM" type="number" value="00" min="0" max="59" onchange="validateSyncTimings(this);" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="syncStartTimeSS" name="syncStartTimeSS" type="number" value="00" min="0" max="59" onchange="validateSyncTimings(this);" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\tab <p class="form-text text-muted small">Format: hh:mm:ss</p>\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-2"></div>\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-3">\par
+\tab\tab\tab\tab\tab\tab <label>Sync stop at: </label>\par
+\tab\tab\tab\tab\tab\tab <div class="input-group ">\par
+\tab\tab\tab\tab\tab\tab\tab <input id="syncStopTimeHH" name="syncStopTimeHH" type="number" value="00" min="0" onchange="validateSyncTimings(this);" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="syncStopTimeMM" name="syncStopTimeMM" type="number" value="00" min="0" max="59" onchange="validateSyncTimings(this);" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>\par
+\tab\tab\tab\tab\tab\tab\tab <input id="syncStopTimeSS" name="syncStopTimeSS" type="number" value="00" min="0" max="59" onchange="validateSyncTimings(this);" onblur="padNumberInput(this,2);" required class="form-control"> \par
+\tab\tab\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\tab\tab <p class="form-text text-muted small">Format: hh:mm:ss</p>\par
+\tab\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab <span class="formGroupTitle">Extra steps:</span>\par
+\tab\tab\tab\tab <p class=" form-text text-muted small"> if you paused during the reaction</p>\par
+\tab\tab\tab\tab <div id="extraPauses" class="pt-2">                                                                                                                  \tab\tab\tab\par
+\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab <div id="divAddPause" class="form-row align-items-center">\par
+\tab\tab\tab\tab\tab <div class="form-group col-lg-3">\par
+\tab\tab\tab\tab\tab\tab <button type="button" class="btn btn-secondary align-middle d-inline-flex" onclick="addExtraPause();" ><i class="material-icons pr-1">add</i> Add pause</button>\par
+\tab\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab </div>\par
+\tab\tab\tab\tab <input type="submit" class="btn btn-primary mt-lg-3" value="Generate reactionhub link" >\par
+\tab\tab\tab </form>\par
+\tab\tab\tab <div class="mt-lg-4 resultBox">\par
+\tab\tab\tab\tab <span class="resultBoxTitle">Link : </span><a id="reactorHubLinkResult" class="generatedLink" target="_blank"></a>\par
+\tab\tab\tab </div>\par
+\tab\tab </div>\par
+\tab\tab\par
+\tab\tab\par
+\tab\tab <script language="javascript" type="text/javascript" src="URLUtils.js"></script>\par
+\tab\tab <script>\par
+\tab\tab\tab var reactorhubEndpoint = "{{\field{\*\fldinst{HYPERLINK https://jeole.github.io/reactorhub/index.html }}{\fldrslt{https://jeole.github.io/reactorhub/index.html\ul0\cf0}}}}\f0\fs22 ";\par
+\tab\tab\tab\par
+\tab\tab\tab function addExtraPause()  \{\par
+\tab\tab\tab\par
+\tab\tab\tab\tab var divAddPause = document.getElementById("divAddPause");\par
+\tab\tab\tab\tab var extraPauses = document.getElementById("extraPauses");\par
+\tab\tab\tab\tab extraPauses.insertAdjacentHTML('beforeend', '  \tab  \tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab <div class="form-row align-items-center extraPauseRow">                                                                                                         \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab <div class="form-group col-12\tab ">                                                                                           \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab <div class="input-group  ">                                                                                         \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <label class="col-form-label col-2 align-middle d-inline-flex" >                                         \tab\tab\tab                     \tab\tab\tab\tab\tab         \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab <i class="material-icons pr-1">                                                                             \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab pause                                                                                                       \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab </i>                                                                                                        \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab Pause at:                                                                                                   \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab </label>                                                                                                        \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <input id="extraPauseHH" name="extraPauseHH[]" type="number" value="00" min="0" onchange="validatePauseTimings();" onblur="padNumberInput(this,2);" required class="form-control ">                 \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>                                                            \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <input id="extraPauseMM" name="extraPauseMM[]" type="number" value="00" min="0" max="59" onchange="validatePauseTimings();" onblur="padNumberInput(this,2);" required class="form-control ">       \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>                                                            \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <input id="extraPauseSS" name="extraPauseSS[]" type="number" value="00" min="0" max="59" onchange="validatePauseTimings();" onblur="padNumberInput(this,2);" required class="form-control ">       \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <div class="col-1" ></div>                                                                            \tab\tab\tab\tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <label class="col-form-label col-2 align-middle d-inline-flex" >                                         \tab\tab\tab                     \tab\tab\tab\tab\tab         \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab <i class="material-icons pr-1">                                                                             \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab play_arrow                                                                                                  \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab </i>                                                                                                        \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab Resume at:                                                                                                  \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab </label>                                                                                                        \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <input id="extraPlayHH" name="extraPlayHH[]" type="number" value="00" min="0" onchange="validatePauseTimings();" required class="form-control ">                  \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>                                                           \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <input id="extraPlayMM" name="extraPlayMM[]" type="number" value="00" min="0" max="59" onchange="validatePauseTimings();" onblur="padNumberInput(this,2);" required class="form-control ">         \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <span class="input-group-text timeSeparator">:</span>                                                           \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <input id="extraPlaySS" name="extraPlaySS[]" type="number" value="00" min="0" max="59" onchange="validatePauseTimings();" onblur="padNumberInput(this,2);" required class="form-control ">         \\\par
+\tab\tab\tab\tab\tab\tab\tab\tab <button type="button" class="btn btn-danger ml-4 align-middle d-inline-flex" onclick="removeExtraPause(this);" >                                \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab <i class="material-icons pr-1">remove</i> Remove pause                                                                                      \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab\tab </button>                                                                                                                                       \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab\tab\tab </div>                                                                                                              \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab\tab </div>\tab                                                                                                                     \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab </div>                                                                                                                          \tab\tab\tab                     \tab\tab\tab\tab\tab\\\par
+\tab\tab\tab\tab ');\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab validatePauseTimings();\par
+\tab\tab\tab\}\par
+\tab\tab\tab\par
+\tab\tab\tab function removeExtraPause(button)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab var divPause = button.closest(".extraPauseRow");\par
+\tab\tab\tab\tab var extraPauses = document.getElementById("extraPauses");\par
+\tab\tab\tab\tab extraPauses.removeChild(divPause);\par
+\tab\tab\tab\}\par
+\tab\tab\tab\par
+\tab\tab\tab function generateLink(form)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab /*example of link : \par
+\tab\tab\tab\tab //https://robkreacts.github.io/reactorhub/index?reactor=https://www.youtube.com/watch?v=u1RSNc0BpyY&talent=https://www.youtube.com/watch?v=jRc9dbgiBPI&reactorVOL=90&talentVOL=10&Control=00:3:02,play&Start=00:02:52 \par
+\tab\tab\tab\tab */\par
+\par
+\tab\tab\tab\par
+\tab\tab\tab\tab var reactorURL = form.reactorURL.value;\par
+\tab\tab\tab\tab var talentURL = form.talentURL.value;\par
+\tab\tab\tab\tab var reactorVOL = form.reactorVOL.value;\par
+\tab\tab\tab\tab var talentVOL = form.talentVOL.value;\par
+\tab\tab\tab\tab var startTime = form.startTimeHH.value + ":" + form.startTimeMM.value + ":" + form.startTimeSS.value;\par
+\tab\tab\tab\tab var syncStartTime = form.syncStartTimeHH.value + ":" + form.syncStartTimeMM.value + ":" + form.syncStartTimeSS.value;\par
+\tab\tab\tab\tab var syncStopTime = form.syncStopTimeHH.value + ":" + form.syncStopTimeMM.value + ":" + form.syncStopTimeSS.value;\par
+\tab\tab\tab\tab var talentStartTime = form.talentStartTimeHH.value + ":" + form.talentStartTimeMM.value + ":" + form.talentStartTimeSS.value;\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab var extraPauses = "";\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab var arrayExtraPauseHH = form.querySelectorAll("input[name='extraPauseHH[]']");\par
+\tab\tab\tab\tab var arrayExtraPauseMM = form.querySelectorAll("input[name='extraPauseMM[]']");\par
+\tab\tab\tab\tab var arrayExtraPauseSS = form.querySelectorAll("input[name='extraPauseSS[]']");\par
+\tab\tab\tab\tab var arrayExtraPlayHH = form.querySelectorAll("input[name='extraPlayHH[]']");\par
+\tab\tab\tab\tab var arrayExtraPlayMM = form.querySelectorAll("input[name='extraPlayMM[]']");\par
+\tab\tab\tab\tab var arrayExtraPlaySS = form.querySelectorAll("input[name='extraPlaySS[]']");\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab for(var i = 0; i < arrayExtraPauseHH.length; i++)\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab extraPauses += ";";\par
+\tab\tab\tab\tab\tab extraPauses += arrayExtraPauseHH[i].value + ":" + arrayExtraPauseMM[i].value + ":" + arrayExtraPauseSS[i].value;\par
+\tab\tab\tab\tab\tab extraPauses += ",pause;";\par
+\tab\tab\tab\tab\tab extraPauses += arrayExtraPlayHH[i].value + ":" + arrayExtraPlayMM[i].value + ":" + arrayExtraPlaySS[i].value;\par
+\tab\tab\tab\tab\tab extraPauses += ",play";\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab var stopControl = "";\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab if(syncStopTime != "00:00:00")\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab stopControl = ";" + syncStopTime + ",pause";\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab var generatedLink = reactorhubEndpoint +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "?reactor=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab encodeURIComponent(reactorURL) +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "&talent=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab encodeURIComponent(talentURL) + \par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "&reactorVOL=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab reactorVOL +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "&talentVOL=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab talentVOL +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "&Start=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab startTime +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "&talentStart=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab talentStartTime +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab "&Control=" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab syncStartTime + \par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab ",play" +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab extraPauses +\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab stopControl ;\par
+\par
+\tab\tab\tab\tab document.getElementById('reactorHubLinkResult').innerHTML = generatedLink;\par
+\tab\tab\tab\tab document.getElementById('reactorHubLinkResult').href = generatedLink;\par
+\tab\tab\tab\}\par
+\tab\tab\tab\par
+\tab\tab\tab function padNumberInput(element, size)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab element.value = pad(element.value, size);\par
+\tab\tab\tab\}\par
+\tab\tab\tab // {{\field{\*\fldinst{HYPERLINK https://stackoverflow.com/questions/10073699/pad-a-number-with-leading-zeros-in-javascript }}{\fldrslt{https://stackoverflow.com/questions/10073699/pad-a-number-with-leading-zeros-in-javascript\ul0\cf0}}}}\f0\fs22  (I'm lazy :o)\par
+\tab\tab\tab function pad(n, width, z) \{\par
+\tab\tab\tab   z = z || '0';\par
+\tab\tab\tab   n = n + '';\par
+\tab\tab\tab   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;\par
+\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\tab\par
+\tab\tab\tab function validateTalentUrl(inputElem)\par
+\tab\tab\tab\{\tab\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab var url = inputElem.value;\par
+\tab\tab\tab\tab var provider = URLUtils.detectProvider(url);\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab if(provider === "UNKNOWN")\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab // url is not valid\par
+\tab\tab\tab\tab\tab console.log("bad talent video url!");\par
+\tab\tab\tab\tab\tab inputElem.setCustomValidity("Talent URL not supported");\par
+\tab\tab\tab\tab\}else\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab inputElem.setCustomValidity("");\par
+\tab\tab\tab\tab\tab // check if we can extract the talent video start time from url\par
+\tab\tab\tab\tab\tab var talentStartTimeInSeconds = 0;\par
+\tab\tab\tab\tab\tab switch(provider)\{\par
+\tab\tab\tab\tab\tab\tab case "YT":\par
+\tab\tab\tab\tab\tab\tab\tab talentStartTimeInSeconds = URLUtils.YT.getStartTimeFromURL(url);\par
+\tab\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab\tab\tab case "DM":\par
+\tab\tab\tab\tab\tab\tab\tab talentStartTimeInSeconds = URLUtils.DM.getStartTimeFromURL(url);\par
+\tab\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab\tab\tab case "VM":\par
+\tab\tab\tab\tab\tab\tab\tab talentStartTimeInSeconds = URLUtils.VM.getStartTimeFromURL(url);\par
+\tab\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab\tab\tab case "Streamable":\par
+\tab\tab\tab\tab\tab\tab\tab talentStartTimeInSeconds = URLUtils.Streamable.getStartTimeFromURL(url);\par
+\tab\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab // update talent start time\par
+\tab\tab\tab\tab\tab var talentStartHours = Math.floor(talentStartTimeInSeconds / 3600);\par
+\tab\tab\tab\tab\tab talentStartTimeInSeconds %= 3600;\par
+\tab\tab\tab\tab\tab var talentStartMinutes = Math.floor(talentStartTimeInSeconds / 60);\par
+\tab\tab\tab\tab\tab talentStartTimeInSeconds %= 60;\par
+\tab\tab\tab\tab\tab var talentStartSeconds = talentStartTimeInSeconds;\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab document.getElementById("talentStartTimeHH").value = pad(talentStartHours, 2);\par
+\tab\tab\tab\tab\tab document.getElementById("talentStartTimeMM").value = pad(talentStartMinutes, 2);\par
+\tab\tab\tab\tab\tab document.getElementById("talentStartTimeSS").value = pad(talentStartSeconds, 2);\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\tab\tab\tab\par
+\tab\tab\tab\par
+\tab\tab\tab function validatePauseTimings()\par
+\tab\tab\tab\{\tab\tab\tab\par
+\tab\tab\tab\tab var form = document.getElementById("form");\par
+\tab\tab\tab\par
+\tab\tab\tab\tab var arrayExtraPauseHH = form.querySelectorAll("input[name='extraPauseHH[]']");\par
+\tab\tab\tab\tab var arrayExtraPauseMM = form.querySelectorAll("input[name='extraPauseMM[]']");\par
+\tab\tab\tab\tab var arrayExtraPauseSS = form.querySelectorAll("input[name='extraPauseSS[]']");\par
+\tab\tab\tab\tab var arrayExtraPlayHH = form.querySelectorAll("input[name='extraPlayHH[]']");\par
+\tab\tab\tab\tab var arrayExtraPlayMM = form.querySelectorAll("input[name='extraPlayMM[]']");\par
+\tab\tab\tab\tab var arrayExtraPlaySS = form.querySelectorAll("input[name='extraPlaySS[]']");\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab var syncStartTime = parseInt(form.syncStartTimeHH.value,10) * 3600 + parseInt(form.syncStartTimeMM.value,10) * 60 + parseInt(form.syncStartTimeSS.value,10);\par
+\tab\tab\tab\tab var syncStopTime = parseInt(form.syncStopTimeHH.value,10) * 3600 + parseInt(form.syncStopTimeMM.value,10) * 60 + parseInt(form.syncStopTimeSS.value,10);\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab for(var i = 0; i < arrayExtraPauseHH.length; i++)\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab arrayExtraPauseHH[i].setCustomValidity("");\par
+\tab\tab\tab\tab\tab arrayExtraPauseMM[i].setCustomValidity("");\par
+\tab\tab\tab\tab\tab arrayExtraPauseSS[i].setCustomValidity("");\par
+\tab\tab\tab\tab\tab arrayExtraPlayHH[i].setCustomValidity("");\par
+\tab\tab\tab\tab\tab arrayExtraPlayMM[i].setCustomValidity("");\par
+\tab\tab\tab\tab\tab arrayExtraPlaySS[i].setCustomValidity("");\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab var pauseStartTime = parseInt(arrayExtraPauseHH[i].value,10) * 3600 + parseInt(arrayExtraPauseMM[i].value,10) * 60 + parseInt(arrayExtraPauseSS[i].value,10);\par
+\tab\tab\tab\tab\tab var pauseResumeTime = parseInt(arrayExtraPlayHH[i].value,10) * 3600 + parseInt(arrayExtraPlayMM[i].value,10) * 60 + parseInt(arrayExtraPlaySS[i].value,10);\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab // check that sync start < pause start (< sync stop)\par
+\tab\tab\tab\tab\tab if(pauseStartTime <= syncStartTime)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab arrayExtraPauseMM[i].setCustomValidity("Pause timer incorrect: pause starts before the start of the synchronized reaction");\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab if(syncStopTime > 0 && pauseStartTime >= syncStopTime)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab arrayExtraPauseMM[i].setCustomValidity("Pause timer incorrect: pause starts after the end of the synchronized reaction");\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab // check that pause start > previous pause resume\par
+\tab\tab\tab\tab\tab if(i > 0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab var previousPauseResumeTime = parseInt(arrayExtraPlayHH[i-1].value,10) * 3600 + parseInt(arrayExtraPlayMM[i-1].value,10) * 60 + parseInt(arrayExtraPlaySS[i-1].value,10);\par
+\tab\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab\tab if(pauseStartTime < previousPauseResumeTime)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab arrayExtraPauseMM[i].setCustomValidity("Pause timer incorrect: pause can't start before the previous one ended");\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab // check that pause resume time < sync stop\par
+\tab\tab\tab\tab\tab if(syncStopTime > 0 && pauseResumeTime >= syncStopTime)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab arrayExtraPlayMM[i].setCustomValidity("Pause timer incorrect: pause end after the end of the synchronized reaction");\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab // check that pause end > pause start\par
+\tab\tab\tab\tab\tab if(pauseStartTime >= pauseResumeTime)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab arrayExtraPlayMM[i].setCustomValidity("Pause timer incorrect: resume time is smaller than pause time");\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\tab\tab\tab\par
+\tab\tab\tab\par
+\tab\tab\tab function validateSyncTimings()\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab var form = document.getElementById("form");\par
+\par
+\tab\tab\tab\tab form.syncStartTimeMM.setCustomValidity("");\par
+\tab\tab\tab\tab form.syncStopTimeMM.setCustomValidity("");\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab var syncStartTime = parseInt(form.syncStartTimeHH.value,10) * 3600 + parseInt(form.syncStartTimeMM.value,10) * 60 + parseInt(form.syncStartTimeSS.value,10);\par
+\tab\tab\tab\tab var syncStopTime = parseInt(form.syncStopTimeHH.value,10) * 3600 + parseInt(form.syncStopTimeMM.value,10) * 60 + parseInt(form.syncStopTimeSS.value,10);\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab if((syncStopTime > 0) &&  (syncStopTime <= syncStartTime))\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab form.syncStopTimeMM.setCustomValidity("Sync timers incorrect: sync stop time should be greater than sync start time");\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab //revalidate pause timing since they can be (in)validated with the sync timing changes\par
+\tab\tab\tab\tab validatePauseTimings();\par
+\tab\tab\tab\}\par
+\tab\tab\tab\par
+\tab\tab\tab\tab\tab\tab\par
+\tab\tab\tab\tab\tab\tab\par
+\tab\tab </script>\par
+\tab </body>\par
+</html>\par
+}
+ 
